@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdelkrim | infrastructure Specialist & Cloud Administrator </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --color-bg: #ffffff;
+            --color-bg-secondary: #f8f9fa;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #666666;
+            --color-accent: #0066cc;
+            --color-accent-light: #e6f0ff;
+            --color-border: #e0e0e0;
+            --color-card-bg: #ffffff;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-bg: #0d1117;
+                --color-bg-secondary: #161b22;
+                --color-text: #e6edf3;
+                --color-text-secondary: #8b949e;
+                --color-accent: #58a6ff;
+                --color-accent-light: rgba(88, 166, 255, 0.12);
+                --color-border: #30363d;
+                --color-card-bg: #161b22;
+                --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+                --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+                --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+            }
+        }
+
+        /* ===== GLOBAL STYLES ===== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-text));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--color-accent);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ===== LAYOUT COMPONENTS ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        /* ===== HEADER / HERO SECTION ===== */
+        .header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--color-bg), var(--color-bg-secondary));
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-accent-light), transparent);
+            border-radius: 50%;
+            top: -200px;
+            right: -100px;
+            opacity: 0.5;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .bio-text {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 2rem auto;
+            color: var(--color-text-secondary);
+            line-height: 1.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            background: var(--color-text);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-accent-light);
+            transform: translateY(-3px);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            background-color: var(--color-bg-secondary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-highlight {
+            background: var(--color-accent-light);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .about-highlight p {
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        /* ===== PROJECTS SECTION ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .project-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ===== SKILLS SECTION ===== */
+        .skills {
+            background-color: var(--color-bg-secondary);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-item {
+            background: var(--color-card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            border-color: var(--color-accent);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .skill-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-item p {
+            font-size: 0.95rem;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-accent-light), transparent);
+        }
+
+        .contact-intro {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .contact-link {
+            background: var(--color-card-bg);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            border: 2px solid var(--color-border);
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all 0.3s ease;
+            min-width: 150px;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-link:hover {
+            border-color: var(--color-accent);
+            background: var(--color-accent-light);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+        }
+
+        /* ===== THEME TOGGLE ===== */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 1000;
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--color-accent);
+            transform: rotate(20deg);
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .contact-link {
+                min-width: auto;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .theme-toggle {
+                top: 1.5rem;
+                left: 1.5rem;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .bio-text {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .project-tags {
+                justify-content: center;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--color-bg-secondary);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* ===== SMOOTH SCROLL & ANIMATIONS ===== */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+
+    <!-- Header / Hero Section -->
+    <header class="header">
+        <div class="hero-content">
+            <h1>Abdelkrim</h1>
+            <p class="subtitle">Systems Specialist</p>
+            <p class="bio-text">
+                متخصص في الأنظمة والشبكات مع خبرة عملية في إدارة البنى التحتية السحابية والأمن السيبراني. 
+                مؤسس توزيعة <strong>redArch</strong> وحالياً أوسع نطاق معرفتي في Python لتعزيز قدراتي في الأمن 
+                السيبراني وخدمات AWS.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">اعرض مشاريعي</a>
+                <a href="#contact" class="btn btn-secondary">تواصل معي</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2>عني</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>خبرتي</h3>
+                    <p>
+                        مع أكثر من عدة سنوات من الخبرة العملية، تخصصت في إدارة الأنظمة والشبكات بكفاءة عالية. 
+                        لدي فهم عميق للبنى التحتية السحابية والحلول الموزعة.
+                    </p>
+                    <p>
+                        أنا شغوف بتطوير الحلول المفتوحة المصدر وقد أطلقت توزيعة <strong>redArch</strong> 
+                        التي تركز على الأداء والأمان.
+                    </p>
+                </div>
+                <div class="about-highlight">
+                    <p>
+                        🎯 <strong>الهدف الحالي:</strong><br><br>
+                        تعمقت حالياً في تعلم Python لتحسين مهاراتي في الأمن السيبراني والتطبيقات الموزعة، 
+                        مع التركيز على شهادات AWS المتقدمة.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2>مشاريعي</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card fade-in">
+                    <div class="project-icon">🔧</div>
+                    <h3>redArch Linux Distribution</h3>
+                    <p>
+                        توزيعة Linux مخصصة تركز على الأداء العالي والأمان. تم تطويرها من الصفر مع محرر نوى 
+                        محسّن وأدوات نظام مخصصة لإدارة الخوادم.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Linux</span>
+                        <span class="tag">Kernel</span>
+                        <span class="tag">Bash</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card fade-in">
+                    <div class="project-icon">☁️</div>
+                    <h3>Infrastructure as Code (IaC)</h3>
+                    <p>
+                        نظام أتمتة كامل لنشر البنى التحتية السحابية على AWS باستخدام Terraform و CloudFormation. 
+                        يوفر سهولة إدارة الموارد وتوسيع المشاريع.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">AWS</span>
+                        <span class="tag">Terraform</span>
+                        <span class="tag">DevOps</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card fade-in">
+                    <div class="project-icon">🔐</div>
+                    <h3>Cybersecurity Monitoring Tool</h3>
+                    <p>
+                        أداة مراقبة أمان شاملة تتابع التهديدات في الوقت الفعلي. مكتوبة بـ Python مع لوحة تحكم 
+                        لتحليل السجلات والتنبيهات الذكية.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Security</span>
+                        <span class="tag">Networking</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills">
+        <div class="container">
+            <h2>المهارات</h2>
+            <div class="skills-grid">
+                <!-- Linux -->
+                <div class="skill-item fade-in">
+                    <span class="skill-icon">🐧</span>
+                    <h3>Linux & Unix</h3>
+                    <p>
+                        إدارة متقدمة للأنظمة، الخوادم، والعمليات. خبرة عميقة في Arch, Fedora, و Debian-based distributions.
+                    </p>
+                </div>
+
+                <!-- Networking -->
+                <div class="skill-item fade-in">
+                    <span class="skill-icon">🌐</span>
+                    <h3>Networking</h3>
+                    <p>
+                        بروتوكولات الشبكات المتقدمة، إعدادات الجدران النارية، VPN، و إدارة الموثوقية والأداء.
+                    </p>
+                </div>
+
+                <!-- Python -->
+                <div class="skill-item fade-in">
+                    <span class="skill-icon">🐍</span>
+                    <h3>Python</h3>
+                    <p>
+                        تطوير الأتمتة والأدوات الإدارية. تعلم مستمر في المكتبات الأمنية والتطبيقات الموزعة.
+                    </p>
+                </div>
+
+                <!-- AWS -->
+                <div class="skill-item fade-in">
+                    <span class="skill-icon">☁️</span>
+                    <h3>AWS & Cloud</h3>
+                    <p>
+                        EC2, S3, RDS, Lambda, VPC. إدارة البنى التحتية السحابية والتطبيقات المقياسة بكفاءة.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>تواصل معي</h2>
+            <p class="contact-intro">
+                أبحث دائماً عن فرص تعاون جديدة وتطوير مشاريع مثيرة. لا تتردد في التواصل معي!
+            </p>
+            <div class="contact-links">
+                <a href="https://linkedin.com" class="contact-link" target="_blank" rel="noopener noreferrer">
+                    <span class="contact-icon">💼</span>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com" class="contact-link" target="_blank" rel="noopener noreferrer">
+                    <span class="contact-icon">💻</span>
+                    <span>GitHub</span>
+                </a>
+                <a href="mailto:your.email@example.com" class="contact-link">
+                    <span class="contact-icon">📧</span>
+                    <span>البريد الإلكتروني</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Abdelkrim | Systems Specialist | جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            document.documentElement.style.colorScheme = 'dark';
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const html = document.documentElement;
+            const isDark = html.style.colorScheme === 'dark';
+            
+            html.style.colorScheme = isDark ? 'light' : 'dark';
+            themeToggle.textContent = isDark ? '🌙' : '☀️';
+            
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        });
+
+        // Intersection Observer for fade-in animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
