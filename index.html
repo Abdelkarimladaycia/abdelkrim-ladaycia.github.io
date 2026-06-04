@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdelkrim | infrastructure Specialist & Cloud Administrator </title>
+    <title>Abdelkrim | Cloud & Systems Infrastructure Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
@@ -82,18 +82,21 @@
             color: var(--color-text);
             position: relative;
             padding-bottom: 1rem;
+            display: inline-block;
         }
 
+        /* خط مخصص تحت العنوان يتحرك تلقائياً حسب اتجاه الصفحة */
         h2::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
             width: 60px;
             height: 3px;
             background: var(--color-accent);
             border-radius: 2px;
         }
+        html[dir="rtl"] h2::after { right: 0; }
+        html[dir="ltr"] h2::after { left: 0; }
 
         h3 {
             font-size: 1.25rem;
@@ -242,6 +245,10 @@
             align-items: center;
         }
 
+        /* لضمان التوافق مع مرونة الاتجاهات */
+        html[dir="rtl"] .about-highlight { border-right: 4px solid var(--color-accent); border-left: none; }
+        html[dir="ltr"] .about-highlight { border-left: 4px solid var(--color-accent); border-right: none; }
+
         .about-text h3 {
             color: var(--color-accent);
             margin-bottom: 1rem;
@@ -258,7 +265,6 @@
             background: var(--color-accent-light);
             padding: 2rem;
             border-radius: 12px;
-            border-left: 4px solid var(--color-accent);
         }
 
         .about-highlight p {
@@ -424,23 +430,30 @@
             font-size: 2rem;
         }
 
-        /* ===== THEME TOGGLE ===== */
-        .theme-toggle {
+        /* ===== CONTROL BUTTONS CONTAINER ===== */
+        .controls-container {
             position: fixed;
             top: 2rem;
-            left: 2rem;
             z-index: 1000;
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        html[dir="rtl"] .controls-container { left: 2rem; }
+        html[dir="ltr"] .controls-container { right: 2rem; }
+
+        .theme-toggle {
             background: var(--color-card-bg);
             border: 1px solid var(--color-border);
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
         }
 
         .theme-toggle:hover {
@@ -448,95 +461,51 @@
             transform: rotate(20deg);
         }
 
+        /* قائمة اللغات المخصصة */
+        .lang-select {
+            background: var(--color-card-bg);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 0.85rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .lang-select:hover {
+            border-color: var(--color-accent);
+        }
+
         /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .contact-link {
-                min-width: auto;
-            }
-
-            section {
-                padding: 4rem 0;
-            }
-
-            .container {
-                padding: 0 1.5rem;
-            }
-
-            .theme-toggle {
-                top: 1.5rem;
-                left: 1.5rem;
-                width: 45px;
-                height: 45px;
-            }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.5rem; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.2rem; }
+            .about-content { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .contact-links { flex-direction: column; align-items: stretch; }
+            .contact-link { min-width: auto; }
+            section { padding: 4rem 0; }
+            .container { padding: 0 1.5rem; }
+            .controls-container { top: 1rem; }
+            html[dir="rtl"] .controls-container { left: 1rem; }
+            html[dir="ltr"] .controls-container { right: 1rem; }
         }
 
         @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            h2 {
-                font-size: 1.3rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .subtitle {
-                font-size: 1rem;
-            }
-
-            .bio-text {
-                font-size: 1rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            .project-tags {
-                justify-content: center;
-            }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.3rem; }
+            .hero-content h1 { font-size: 2rem; }
+            .subtitle { font-size: 1rem; }
+            .bio-text { font-size: 1rem; }
+            .cta-buttons { flex-direction: column; align-items: stretch; }
+            .btn { width: 100%; text-align: center; }
+            .project-tags { justify-content: center; }
         }
 
         /* ===== FOOTER ===== */
@@ -552,7 +521,6 @@
             font-size: 0.95rem;
         }
 
-        /* ===== SMOOTH SCROLL & ANIMATIONS ===== */
         .fade-in {
             animation: fadeIn 0.8s ease-out forwards;
             opacity: 0;
@@ -571,22 +539,29 @@
     </style>
 </head>
 <body>
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+    <!-- أزرار التحكم في البيئة والمظهر واللغة متجاورة -->
+    <div class="controls-container">
+        <select class="lang-select" id="langSelect" aria-label="Change Language">
+            <option value="ar">العربية</option>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+        </select>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
 
     <!-- Header / Hero Section -->
     <header class="header">
         <div class="hero-content">
             <h1>Abdelkrim</h1>
-            <p class="subtitle">Systems Specialist</p>
-            <p class="bio-text">
+            <p class="subtitle" data-i18n="job_title">Cloud & Systems Infrastructure Engineer</p>
+            <p class="bio-text" data-i18n="bio_text">
                 متخصص في الأنظمة والشبكات مع خبرة عملية في إدارة البنى التحتية السحابية والأمن السيبراني. 
-                مؤسس توزيعة <strong>redArch</strong> وحالياً أوسع نطاق معرفتي في Python لتعزيز قدراتي في الأمن 
+                مؤسس توزيعة redArch وحالياً أوسع نطاق معرفتي في Python لتعزيز قدراتي في الأمن 
                 السيبراني وخدمات AWS.
             </p>
             <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">اعرض مشاريعي</a>
-                <a href="#contact" class="btn btn-secondary">تواصل معي</a>
+                <a href="#projects" class="btn btn-primary" data-i18n="btn_projects">اعرض مشاريعي</a>
+                <a href="#contact" class="btn btn-secondary" data-i18n="btn_contact">تواصل معي</a>
             </div>
         </div>
     </header>
@@ -594,24 +569,21 @@
     <!-- About Section -->
     <section class="about">
         <div class="container">
-            <h2>عني</h2>
+            <h2 data-i18n="nav_about">عني</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <h3>خبرتي</h3>
-                    <p>
-                        مع أكثر من عدة سنوات من الخبرة العملية، تخصصت في إدارة الأنظمة والشبكات بكفاءة عالية. 
-                        لدي فهم عميق للبنى التحتية السحابية والحلول الموزعة.
+                    <h3 data-i18n="about_heading">خبرتي</h3>
+                    <p data-i18n="about_p1">
+                        متخصص في إدارة وتصميم وهندسة الأنظمة والشبكات المتقدمة بكفاءة عالية، مع فهم راسخ للبنى التحتية والحلول الموزعة.
                     </p>
-                    <p>
-                        أنا شغوف بتطوير الحلول المفتوحة المصدر وقد أطلقت توزيعة <strong>redArch</strong> 
-                        التي تركز على الأداء والأمان.
+                    <p data-i18n="about_p2">
+                        أنا شغوف جداً بتطوير وبناء الأنظمة المفتوحة المصدر من الصفر، وقمت بتطوير وإطلاق توزيعة redArch المخصصة التي تركز على تحسين الأداء والأمان.
                     </p>
                 </div>
                 <div class="about-highlight">
                     <p>
-                        🎯 <strong>الهدف الحالي:</strong><br><br>
-                        تعمقت حالياً في تعلم Python لتحسين مهاراتي في الأمن السيبراني والتطبيقات الموزعة، 
-                        مع التركيز على شهادات AWS المتقدمة.
+                        🎯 <strong data-i18n="target_title">الهدف الحالي:</strong><br><br>
+                        <span data-i18n="target_desc">أركز حالياً على صقل مهاراتي البرمجية في لغة Python لأتمتة العمليات المتقدمة، وبناء سيناريوهات الأمن السيبراني بالتوازي مع التجهيز لاعتماد الحلول المعمارية السحابية من AWS.</span>
                     </p>
                 </div>
             </div>
@@ -621,15 +593,14 @@
     <!-- Projects Section -->
     <section class="projects" id="projects">
         <div class="container">
-            <h2>مشاريعي</h2>
+            <h2 data-i18n="nav_projects">مشاريعي</h2>
             <div class="projects-grid">
                 <!-- Project 1 -->
                 <div class="project-card fade-in">
                     <div class="project-icon">🔧</div>
                     <h3>redArch Linux Distribution</h3>
-                    <p>
-                        توزيعة Linux مخصصة تركز على الأداء العالي والأمان. تم تطويرها من الصفر مع محرر نوى 
-                        محسّن وأدوات نظام مخصصة لإدارة الخوادم.
+                    <p data-i18n="proj1_desc">
+                        توزيعة Linux مخصصة تركز على الأداء العالي والأمان. تم تطويرها من الصفر مع محرر نوى محسّن وأدوات نظام مخصصة لإدارة الخوادم.
                     </p>
                     <div class="project-tags">
                         <span class="tag">Linux</span>
@@ -642,9 +613,8 @@
                 <div class="project-card fade-in">
                     <div class="project-icon">☁️</div>
                     <h3>Infrastructure as Code (IaC)</h3>
-                    <p>
-                        نظام أتمتة كامل لنشر البنى التحتية السحابية على AWS باستخدام Terraform و CloudFormation. 
-                        يوفر سهولة إدارة الموارد وتوسيع المشاريع.
+                    <p data-i18n="proj2_desc">
+                        نظام أتمتة كامل لنشر البنى التحتية السحابية على AWS باستخدام Terraform و CloudFormation. يوفر سهولة إدارة الموارد وتوسيع المشاريع.
                     </p>
                     <div class="project-tags">
                         <span class="tag">AWS</span>
@@ -657,9 +627,8 @@
                 <div class="project-card fade-in">
                     <div class="project-icon">🔐</div>
                     <h3>Cybersecurity Monitoring Tool</h3>
-                    <p>
-                        أداة مراقبة أمان شاملة تتابع التهديدات في الوقت الفعلي. مكتوبة بـ Python مع لوحة تحكم 
-                        لتحليل السجلات والتنبيهات الذكية.
+                    <p data-i18n="proj3_desc">
+                        أداة مراقبة أمان شاملة تتابع التهديدات في الوقت الفعلي. مكتوبة بـ Python مع لوحة تحكم لتحليل السجلات والتنبيهات الذكية.
                     </p>
                     <div class="project-tags">
                         <span class="tag">Python</span>
@@ -674,14 +643,14 @@
     <!-- Skills Section -->
     <section class="skills">
         <div class="container">
-            <h2>المهارات</h2>
+            <h2 data-i18n="nav_skills">المهارات</h2>
             <div class="skills-grid">
                 <!-- Linux -->
                 <div class="skill-item fade-in">
                     <span class="skill-icon">🐧</span>
                     <h3>Linux & Unix</h3>
-                    <p>
-                        إدارة متقدمة للأنظمة، الخوادم، والعمليات. خبرة عميقة في Arch, Fedora, و Debian-based distributions.
+                    <p data-i18n="skill_linux">
+                        إدارة متقدمة للأنظمة، الخوادم، والعمليات. خبرة عميقة في تخصيص وبناء بيئات مستقلة مثل Arch و NixOS و استكشاف Gentoo.
                     </p>
                 </div>
 
@@ -689,8 +658,8 @@
                 <div class="skill-item fade-in">
                     <span class="skill-icon">🌐</span>
                     <h3>Networking</h3>
-                    <p>
-                        بروتوكولات الشبكات المتقدمة، إعدادات الجدران النارية، VPN، و إدارة الموثوقية والأداء.
+                    <p data-i18n="skill_net">
+                        إعداد وفحص البنى التحتية الأساسية والبروتوكولات (تغطية مناهج CCNA/CCNP)، إدارة الجدران النارية، وحلول الـ VPN بكفاءة.
                     </p>
                 </div>
 
@@ -698,8 +667,8 @@
                 <div class="skill-item fade-in">
                     <span class="skill-icon">🐍</span>
                     <h3>Python</h3>
-                    <p>
-                        تطوير الأتمتة والأدوات الإدارية. تعلم مستمر في المكتبات الأمنية والتطبيقات الموزعة.
+                    <p data-i18n="skill_py">
+                        تطوير أدوات وسكربتات الأتمتة المخصصة لإدارة العمليات، مع التركيز على التطبيقات الأمنية والتعامل مع المكتبات المتخصصة.
                     </p>
                 </div>
 
@@ -707,8 +676,8 @@
                 <div class="skill-item fade-in">
                     <span class="skill-icon">☁️</span>
                     <h3>AWS & Cloud</h3>
-                    <p>
-                        EC2, S3, RDS, Lambda, VPC. إدارة البنى التحتية السحابية والتطبيقات المقياسة بكفاءة.
+                    <p data-i18n="skill_cloud">
+                        بناء وهندسة الحلول السحابية ونشر الخدمات الحيوية بكفاءة وموثوقية (تغطية معايير الحلول المعمارية الحالية AWS SAA).
                     </p>
                 </div>
             </div>
@@ -718,8 +687,8 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2>تواصل معي</h2>
-            <p class="contact-intro">
+            <h2 data-i18n="nav_contact">تواصل معي</h2>
+            <p class="contact-intro" data-i18n="contact_p">
                 أبحث دائماً عن فرص تعاون جديدة وتطوير مشاريع مثيرة. لا تتردد في التواصل معي!
             </p>
             <div class="contact-links">
@@ -731,9 +700,9 @@
                     <span class="contact-icon">💻</span>
                     <span>GitHub</span>
                 </a>
-                <a href="mailto:your.email@example.com" class="contact-link">
+                <a href="mailto:your.email@example.com" class="contact-link" id="emailLink">
                     <span class="contact-icon">📧</span>
-                    <span>البريد الإلكتروني</span>
+                    <span data-i18n="contact_email">البريد الإلكتروني</span>
                 </a>
             </div>
         </div>
@@ -741,14 +710,119 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 Abdelkrim | Systems Specialist | جميع الحقوق محفوظة</p>
+        <p>&copy; 2026 Abdelkrim | <span data-i18n="footer_rights">جميع الحقوق محفوظة</span></p>
     </footer>
 
     <script>
-        // Theme Toggle Functionality
+        // ===== قواميس الترجمة التلقائية =====
+        const dictionary = {
+            ar: {
+                job_title: "Cloud & Systems Infrastructure Engineer",
+                bio_text: "متخصص في الأنظمة والشبكات مع خبرة عملية في إدارة البنى التحتية السحابية والأمن السيبراني. مؤسس توزيعة redArch وحالياً أوسع نطاق معرفتي في Python لتعزيز قدراتي في الأمن السيبراني وخدمات AWS.",
+                btn_projects: "اعرض مشاريعي",
+                btn_contact: "تواصل معي",
+                nav_about: "عني",
+                about_heading: "خبرتي",
+                about_p1: "متخصص في إدارة وتصميم وهندسة الأنظمة والشبكات المتقدمة بكفاءة عالية، مع فهم راسخ للبنى التحتية والحلول الموزعة.",
+                about_p2: "أنا شغوف جداً بتطوير وبناء الأنظمة المفتوحة المصدر من الصفر، وقمت بتطوير وإطلاق توزيعة redArch المخصصة التي تركز على تحسين الأداء والأمان.",
+                target_title: "الهدف الحالي:",
+                target_desc: "أركز حالياً على صقل مهاراتي البرمجية في لغة Python لأتمتة العمليات المتقدمة، وبناء سيناريوهات الأمن السيبراني بالتوازي مع التجهيز لاعتماد الحلول المعمارية السحابية من AWS.",
+                nav_projects: "مشاريعي",
+                proj1_desc: "توزيعة Linux مخصصة تركز على الأداء العالي والأمان. تم تطويرها من الصفر مع محرر نوى محسّن وأدوات نظام مخصصة لإدارة الخوادم.",
+                proj2_desc: "نظام أتمتة كامل لنشر البنى التحتية السحابية على AWS باستخدام Terraform و CloudFormation. يوفر سهولة إدارة الموارد وتوسيع المشاريع.",
+                proj3_desc: "أداة مراقبة أمان شاملة تتابع التهديدات في الوقت الفعلي. مكتوبة بـ Python مع لوحة تحكم لتحليل السجلات والتنبيهات الذكية.",
+                nav_skills: "المهارات",
+                skill_linux: "إدارة متقدمة للأنظمة، الخوادم، والعمليات. خبرة عميقة في تخصيص وبناء بيئات مستقلة مثل Arch و NixOS و استكشاف Gentoo.",
+                skill_net: "إعداد وفحص البنى التحتية الأساسية والبروتوكولات (تغطية مناهج CCNA/CCNP)، إدارة الجدران النارية، وحلول الـ VPN بكفاءة.",
+                skill_py: "تطوير أدوات وسكربتات الأتمتة المخصصة لإدارة العمليات، مع التركيز على التطبيقات الأمنية والتعامل مع المكتبات المتخصصة.",
+                skill_cloud: "بناء وهندسة الحلول السحابية ونشر الخدمات الحيوية بكفاءة وموثوقية (تغطية معايير الحلول المعمارية الحالية AWS SAA).",
+                nav_contact: "تواصل معي",
+                contact_p: "أبحث دائماً عن فرص تعاون جديدة وتطوير مشاريع مثيرة. لا تتردد في التواصل معي!",
+                contact_email: "البريد الإلكتروني",
+                footer_rights: "جميع الحقوق محفوظة"
+            },
+            en: {
+                job_title: "Cloud & Systems Infrastructure Engineer",
+                bio_text: "Specialized in advanced systems and networking with solid core expertise in managing cloud infrastructures and modern environments. Founder of redArch distribution, currently sharpening my skills in Python for security engineering and AWS operations.",
+                btn_projects: "View My Projects",
+                btn_contact: "Get in Touch",
+                nav_about: "About Me",
+                about_heading: "My Experience",
+                about_p1: "Expertise centered on engineering, maintaining, and automating advanced infrastructure environments with a deep understanding of system architecture and operations.",
+                about_p2: "Passionate about open-source engineering, constructing tailored environments from scratch, and developing custom system tools built for optimized server performance.",
+                target_title: "Current Focus:",
+                target_desc: "Deep diving into advanced Python development to drive automation and custom security tooling, while thoroughly mapping architectures for enterprise AWS deployments.",
+                nav_projects: "Projects",
+                proj1_desc: "A custom operating environment crafted for raw performance and high efficiency. Developed to optimize kernel configurations and manage system-level enterprise workflows.",
+                proj2_desc: "End-to-end cloud provisioning blueprints orchestrated via industry-standard IaC practices on AWS, ensuring fast resource allocation and modular scalability.",
+                proj3_desc: "Real-time log parsing and infrastructure security metric framework written in Python, featuring modular alerting mechanisms and intelligent tracking capabilities.",
+                nav_skills: "Technical Skills",
+                skill_linux: "Advanced core system engineering and process orchestration. Deep daily experience tuning standalone distributions including Arch, NixOS, and exploring Gentoo.",
+                skill_net: "Solid grounding in enterprise infrastructure networking logic, core protocols (CCNA/CCNP track), security firewalls, and production VPN routing environments.",
+                skill_py: "Building tailored automation scripts and low-overhead admin tooling designed to manipulate logs and construct modern functional security wrappers.",
+                skill_cloud: "Engineering robust virtual networks, computing topologies, and high-availability assets (aligned with standard AWS Solutions Architect blueprints).",
+                nav_contact: "Contact Me",
+                contact_p: "I am always open to discussing technical collaborations, infrastructure automation, or core engineering projects. Feel free to reach out!",
+                contact_email: "Email Me",
+                footer_rights: "All Rights Reserved"
+            },
+            fr: {
+                job_title: "Ingénieur Infrastructure Cloud & Systèmes",
+                bio_text: "Spécialisé dans les systèmes avancés et les réseaux avec une solide expertise dans la gestion des infrastructures cloud. Fondateur de la distribution redArch, je perfectionne actuellement mes compétences en Python pour l'ingénierie de sécurité et AWS.",
+                btn_projects: "Voir mes Projets",
+                btn_contact: "Contactez-moi",
+                nav_about: "À Propos",
+                about_heading: "Mon Expérience",
+                about_p1: "Expertise centrée sur l'ingénierie, la maintenance et l'automatisation d'environnements d'infrastructure avancés avec une profonde compréhension de l'architecture système.",
+                about_p2: "Passionné par l'écosystème open-source, la construction d'environnements sur mesure à partir de zéro et le développement d'outils système optimisés pour les serveurs.",
+                target_title: "Objectif Actuel:",
+                target_desc: "Approfondissement du développement Python pour l'automatisation et les outils de sécurité, parallèlement à la validation d'architectures de solutions cloud avancées sur AWS.",
+                nav_projects: "Projets",
+                proj1_desc: "Un environnement d'exploitation sur mesure conçu pour la performance brute. Développé pour optimiser les configurations de noyau et gérer les serveurs.",
+                proj2_desc: "Déploiement complet d'infrastructures cloud orchestré via Terraform et CloudFormation sur AWS, assurant une allocation agile des ressources.",
+                proj3_desc: "Outil d'analyse des journaux et de surveillance de la sécurité en temps réel écrit en Python, doté de mécanismes d'alerte modulaires.",
+                nav_skills: "Compétences",
+                skill_linux: "Ingénierie système avancée et orchestration de processus. Expérience approfondie avec des distributions indépendantes comme Arch, NixOS et Gentoo.",
+                skill_net: "Solides bases en logique réseau d'entreprise, protocoles fondamentaux (cursus CCNA/CCNP), pare-feu de sécurité et routage VPN.",
+                skill_py: "Création de scripts d'automatisation sur mesure et d'outils d'administration légers conçus pour la sécurité et la gestion des logs.",
+                skill_cloud: "Conception de réseaux virtuels robustes et déploiement de services cloud hautement disponibles (alignés sur les normes AWS SAA).",
+                nav_contact: "Contact",
+                contact_p: "Je suis toujours ouvert à discuter de collaborations techniques, d'automatisation ou de projets d'ingénierie. N'hésitez pas à me contacter !",
+                contact_email: "Envoyer un e-mail",
+                footer_rights: "Tous Droits Réservés"
+            }
+        };
+
+        const langSelect = document.getElementById('langSelect');
         const themeToggle = document.getElementById('themeToggle');
-        
-        // Check for saved theme preference or default to light mode
+
+        // ===== دالة تغيير اللغة والاتجاه =====
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (dictionary[lang] && dictionary[lang][key]) {
+                    element.innerHTML = dictionary[lang][key];
+                }
+            });
+
+            // قلب الاتجاه والهامش للموقع تلقائياً طبقاً للغة
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = lang;
+            }
+
+            langSelect.value = lang;
+            localStorage.setItem('preferred_lang', lang);
+        }
+
+        langSelect.addEventListener('change', (e) => {
+            changeLanguage(e.target.value);
+        });
+
+        // ===== إدارة الوضع المظلم / المضيء =====
         const currentTheme = localStorage.getItem('theme') || 'light';
         if (currentTheme === 'dark') {
             document.documentElement.style.colorScheme = 'dark';
@@ -765,7 +839,13 @@
             localStorage.setItem('theme', isDark ? 'light' : 'dark');
         });
 
-        // Intersection Observer for fade-in animation
+        // ===== تشغيل الإعدادات المحفوظة عند فتح الصفحة =====
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_lang') || 'ar';
+            changeLanguage(savedLang);
+        });
+
+        // Intersection Observer
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -784,7 +864,7 @@
             observer.observe(element);
         });
 
-        // Smooth scroll for navigation links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
